@@ -41,3 +41,23 @@ connected to a real backend and MongoDB Atlas.
 
 ## 📁 Project Structure
 
+---
+
+## ⭐ Bonus Implemented: API Rate Limiting
+
+To improve security and prevent abuse (brute-force login/signup attempts), the backend includes **rate limiting** using `express-rate-limit`.
+
+### Applied Limits
+- `/api` → General API limiter: **200 requests / 15 minutes**
+- `/api/auth` → Auth limiter: **20 requests / 10 minutes** (stricter to prevent brute-force)
+
+### How to test
+1. Run backend + frontend
+2. Send repeated requests to `/api/auth/signin` or `/api/auth/signup`
+3. After crossing the limit, the API responds with:
+
+```json
+{
+  "message": "Too many attempts. Try again later."
+}
+
